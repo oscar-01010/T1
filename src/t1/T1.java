@@ -17,7 +17,16 @@ public class T1 {
      */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        try{
+            if("123df6789".length()==9 ){
+            Integer.parseInt("123d56789");
+            System.out.println("ok");
+        }
+        }catch(NumberFormatException e){
+            System.out.println("break");
+        }
         
+            
         System.out.println("");
     }
     
