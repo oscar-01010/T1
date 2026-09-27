@@ -71,21 +71,45 @@ public class Paciente {
     
     
     public void validadIdentidad(String tipoDocumento, String numeroDocumento){
-        if(tipoDocumento.equalsIgnoreCase("DNI")&&numeroDocumento.length()==8){
-            this.tipoDocumento = tipoDocumento.toUpperCase();
-            this.numeroDocumento = numeroDocumento;
-        }else if (tipoDocumento.equalsIgnoreCase("CE")&&numeroDocumento.length()==9){
-            this.tipoDocumento = tipoDocumento.toUpperCase();
-            this.numeroDocumento = numeroDocumento;
-        }else {
-            System.out.println("Datos incompletos u incorretos");
-        } 
+        try{
+            Integer.parseInt(numeroDocumento);
+            if(tipoDocumento.equalsIgnoreCase("DNI")&&numeroDocumento.length()==8){
+                this.tipoDocumento = tipoDocumento.toUpperCase();
+                this.numeroDocumento = numeroDocumento;
+            }else if (tipoDocumento.equalsIgnoreCase("CE")&&numeroDocumento.length()==9){
+                this.tipoDocumento = tipoDocumento.toUpperCase();
+                this.numeroDocumento = numeroDocumento;
+            }else {
+                System.out.println("Datos incompletos u incorretos");
+            } 
+        }catch(NumberFormatException e){
+            System.out.println("Solo se deben ingresar numeros");
+        }
+        
     }
     
     public void validarTelefono(String telefono){
-        //if(telefono.length()==9 && Integer.parseInt(telefono)){
-            
-        //}
+        try{
+            Integer.parseInt(telefono);
+            if(telefono.length()==9 ){
+                this.telefono = telefono;
+            }else{
+                System.out.println("El número de telefono debe tener 9 digitos");
+            }
+        }catch(NumberFormatException e){
+            System.out.println("Solo se deben ingresar numeros");
+        }
+        
     }
+    
+    /*public void validarCorreo(String correo){
+        String r = "";
+        if(correo.contains("@")){
+            for(int i=correo.length()-1; i>correo.length()-4; i--){
+                r= correo[i];
+            }
+        }
+        
+    }*/
     
 }
