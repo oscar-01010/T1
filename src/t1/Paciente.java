@@ -1,3 +1,5 @@
+package t1;
+
 
 import java.util.Date;
 
@@ -11,7 +13,9 @@ import java.util.Date;
  * @author UCF20408
  */
 public class Paciente {
-    private String nombre;
+    static  int idGenerador = 0;
+    private int id;
+    private String nombre; 
     private String apellidoPaterno;
     private String apellidoMaterno;
     private String tipoDocumento;
@@ -20,7 +24,15 @@ public class Paciente {
     private String alergias;
     private String correo;
     private String telefono;
+    private String tipoSangre;
 
+    public Paciente() {
+        this.id = ++idGenerador;
+    }
+
+    
+    
+    
     public String getNombre() {
         return nombre;
     }
@@ -57,6 +69,12 @@ public class Paciente {
         return telefono;
     }
 
+    public String getTipoSangre() {
+        return tipoSangre;
+    }
+    
+    
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -68,6 +86,19 @@ public class Paciente {
     public void setApellidoMaterno(String apellidoMaterno) {
         this.apellidoMaterno = apellidoMaterno;
     }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public void setTipoSangre(String tipoSangre) {
+        this.tipoSangre = tipoSangre;
+    }
+
+    public void setAlergias(String alergias) {
+        this.alergias = alergias;
+    }
+    
     
     
     public void validadIdentidad(String tipoDocumento, String numeroDocumento){
@@ -102,14 +133,35 @@ public class Paciente {
         
     }
     
-    /*public void validarCorreo(String correo){
-        String r = "";
-        if(correo.contains("@")){
-            for(int i=correo.length()-1; i>correo.length()-4; i--){
-                r= correo[i];
-            }
+    public void validarCorreo(String correo){
+        if(correo.contains("@")&&correo.endsWith(".com")){
+            this.correo = correo;
+        }else{
+            System.out.println("El correo debe contener un @ y termiar en .com");
         }
-        
-    }*/
+    }
     
+    public void validarAlergias(String alergias){
+        if(!alergias.equals("")&&alergias!=null){
+            this.alergias = alergias;
+        }else{
+            System.out.println("No se deben omitir las alergias");
+        }
+    }
+    
+    public void verDatos(){
+        System.out.println(
+                "Nombre: " + this.nombre+
+                "\nApellido paterno: " + this.apellidoPaterno+
+                "\nApellido materno: " + this.apellidoPaterno+
+                "\nTipo documento: " + this.tipoDocumento+
+                "\nnúmero documento: " + this.numeroDocumento+
+                "\nFecha nacimineto: " + this.fechaNacimiento+
+                "\nAlergias: " + this.alergias+
+                "\nTipo de sangre: " + this.tipoSangre+
+                "\nCorreo: "+ this.correo+
+                "\nTelefono: "+ this.telefono   
+                     
+        );
+    }
 }
